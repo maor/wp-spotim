@@ -49,7 +49,7 @@ class SpotIM_Export_Conversation {
 		$o->site_url = get_permalink( $this->post_id );
 		
 		// then get all comment IDs
-		$o->comments_ids = wp_list_pluck( $this->get_top_level_comments(), 'comment_ID' );
+		$o->comments_ids = array_values( wp_list_pluck( $this->get_top_level_comments(), 'comment_ID' ) );
 
 		// first, we need the tree
 		$o->tree = $this->get_tree();
@@ -67,11 +67,44 @@ class SpotIM_Export_Conversation {
 		$users = array();
 
 		foreach ( $this->comments as $comment ) {
-			$users[ $comment->comment_author_email ] = array(
-				'user_name' => apply_filters( 'get_comment_author', $comment->comment_author, $comment->comment_ID, $comment ),
-				'display_name' => apply_filters( 'get_comment_author', $comment->comment_author, $comment->comment_ID, $comment ),
-				'email' => $comment->comment_author_email,
-			);
+			if ( ! trim($comment->comment_author_email) ) {
+				// this comment has no email behind it. pick a random user ID to associate with.
+				$_orderby_fields = array(
+					'ID',
+					'display_name',
+					'name',
+					'email',
+					'registered',
+				);
+
+				$_order_options = array(
+					'ASC',
+					'DESC',
+				);
+
+				$users_query = get_users( array(
+					'number' => 1,
+					'orderby' => $_orderby_fields[ rand( 0, count($_orderby_fields) - 1 ) ],
+					'order' => $_order_options[ rand( 0, count($_order_options) - 1 ) ],
+				) );
+
+				if ( empty($users_query) )
+					continue;
+
+				$user = current( $users_query );
+
+				$users[ $user->ID ] = array(
+					'user_name' => apply_filters( 'get_comment_author', $comment->comment_author, $comment->comment_ID, $comment ),
+					'display_name' => apply_filters( 'get_comment_author', $comment->comment_author, $comment->comment_ID, $comment ),
+					'email' => $comment->comment_author_email,
+				);
+			} else {
+				$users[ $comment->comment_author_email ] = array(
+					'user_name' => apply_filters( 'get_comment_author', $comment->comment_author, $comment->comment_ID, $comment ),
+					'display_name' => apply_filters( 'get_comment_author', $comment->comment_author, $comment->comment_ID, $comment ),
+					'email' => $comment->comment_author_email,
+				);
+			}
 		}
 
 		return $users;
@@ -79,7 +112,6 @@ class SpotIM_Export_Conversation {
 
 	private function aggregate_messages() {
 		$comments = array();
-
 		$comment_ids = array_keys( $this->object->tree );
 
 		foreach ( $comment_ids as $comment_id ) {
@@ -89,7 +121,7 @@ class SpotIM_Export_Conversation {
 				'user_id' => $comment->comment_author_email,
 				'content' => apply_filters( 'get_comment_text', $comment->comment_content, $comment, array() ),
 				'written_at' => strtotime( $comment->comment_date_gmt ),
-				'anonymous' => false,
+				'anonymous' => ( '' === trim($comment->comment_author_email) ),
 			);
 		}
 		
