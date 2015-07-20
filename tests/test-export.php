@@ -3,9 +3,7 @@
 class ExportTest extends WP_SpotIM_TestCase {
 
 	protected $_exported_data;
-
 	protected $_top_level_comments;
-
 	protected $_post_id;
 
 	protected $_random_authors = array(
@@ -16,7 +14,6 @@ class ExportTest extends WP_SpotIM_TestCase {
 		'brokenexample.com' => 'Broken Email',
 		'alenby@example.com' => '', // empty name
 	);
-
 
 	public function setUp() {
 		parent::setUp();
@@ -48,7 +45,7 @@ class ExportTest extends WP_SpotIM_TestCase {
 			'comment_post_ID' => $this->_post_id,
 			'comment_author' => 'Anonymous',
 		) );
-		
+
 		// get all comments
 		$messages = ( new SpotIM_Export_Conversation( $this->_post_id ) )->aggregate_messages();
 
