@@ -61,6 +61,29 @@ class ExportTest extends WP_SpotIM_TestCase {
 		$this->assertTrue( $exported_comment['anonymous'] );
 	}
 
+	public function test_same_user_posting_multiple_comments() {
+		$_random_author_email = array_rand( $this->_random_authors );
+		$_random_author_name = $this->_random_authors[ $_random_author_email ];
+
+		// create multiple comments by same user
+		$comments_ids = $this->factory->comment->create_post_comments( $this->_post_id, 2, array(
+			'comment_author' => $_random_author_name,
+			'comment_author_email' => $_random_author_email,
+		) );
+
+		// create an export instance
+		$users = ( new SpotIM_Export_Conversation( $this->_post_id ) )->aggregate_users();
+
+		// how many items have this email in them?
+		$all_emails = wp_list_pluck( $users, 'email' );
+
+		// number of appearances
+		$appearances = array_count_values( $all_emails );
+
+		// needs to appear only once
+		$this->assertEquals( 1, $appearances[ $_random_author_email ] );
+	}
+
 	/*
 	 * This function nests up to 2 levels deep
 	 */
