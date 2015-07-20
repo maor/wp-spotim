@@ -63,7 +63,7 @@ class SpotIM_Export_Conversation {
 		return apply_filters( 'spotim_conversation_ready', $o );
 	}
 
-	private function aggregate_users() {
+	public function aggregate_users() {
 		$users = array();
 
 		foreach ( $this->comments as $comment ) {
@@ -110,25 +110,29 @@ class SpotIM_Export_Conversation {
 		return $users;
 	}
 
-	private function aggregate_messages() {
+	public function aggregate_messages() {
 		$comments = array();
 		$comment_ids = array_keys( $this->object->tree );
 
 		foreach ( $comment_ids as $comment_id ) {
 			$comment = $this->comments[ $comment_id ];
+			$comment_is_anonymous = ( '' === trim($comment->comment_author_email) );
 
 			$comments[ $comment->comment_ID ] = array(
-				'user_id' => $comment->comment_author_email,
 				'content' => apply_filters( 'get_comment_text', $comment->comment_content, $comment, array() ),
 				'written_at' => strtotime( $comment->comment_date_gmt ),
-				'anonymous' => ( '' === trim($comment->comment_author_email) ),
+				'anonymous' => $comment_is_anonymous,
 			);
+
+			// if comment isn't anonymous, append user ID
+			if ( ! $comment_is_anonymous )
+				$comments[ $comment->comment_ID ]['user_id'] = $comment->comment_author_email;
 		}
 		
 		return $comments;
 	}
 
-	private function get_tree() {
+	public function get_tree() {
 		$parent_comments = $this->get_top_level_comments();
 		$bank = array();
 
@@ -140,7 +144,7 @@ class SpotIM_Export_Conversation {
 		return $bank;
 	}
 
-	private function get_top_level_comments() {
+	public function get_top_level_comments() {
 		return array_filter($this->comments, array($this, 'filter_parents'));
 	}
 
