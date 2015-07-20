@@ -83,6 +83,69 @@ class ExportTest extends WP_SpotIM_TestCase {
 		$this->assertEquals( 1, $appearances[ $_random_author_email ] );
 	}
 
+	public function test_conversation_two_levels_nested_deep() {
+		// create post from scratch
+		$post_id = $this->factory->post->create();
+
+		// create first comment on top-level
+		$first_level_comment_id = $this->factory->comment->create( array(
+			'comment_post_ID' => $post_id,
+		) );
+
+		// second-level comment
+		$second_level_comment_id = $this->factory->comment->create( array(
+			'comment_post_ID' 	=> $post_id,
+			'comment_parent' 	=> $first_level_comment_id,
+		) );
+
+		// third level
+		$third_level_comment_id = $this->factory->comment->create( array(
+			'comment_post_ID' 	=> $post_id,
+			'comment_parent' 	=> $second_level_comment_id,
+		) );
+
+		/*
+		Tree structure should look like this:
+		array(3) {
+		  [132]=>
+		  array(1) {
+		    [0]=>
+		    string(3) "133"
+		  }
+		  [133]=>
+		  array(1) {
+		    [0]=>
+		    string(3) "134"
+		  }
+		  [134]=>
+		  array(0) {
+		  }
+		}
+		*/
+		$exporter_instance = $this->__get_exporter_instance( $post_id );
+		$tree = $exporter_instance->get_tree();
+
+		// there should be 3 items in the tree
+		$this->assertCount( 3, $tree );
+		
+		// check if 1st comment has the 2nd level comment in it
+		$this->assertTrue( array_key_exists( $first_level_comment_id, $tree ) && current( $tree[ $first_level_comment_id ] ) == $second_level_comment_id );
+		// ... same for second
+		$this->assertTrue( array_key_exists( $second_level_comment_id, $tree ) && current( $tree[ $second_level_comment_id ] ) == $third_level_comment_id );
+		// as for the third, it should exist in tree, but be orphan
+		$this->assertArrayHasKey( $second_level_comment_id, $tree );
+		$this->assertEmpty( $tree[ $third_level_comment_id ] );
+
+		// last but not least, check 'comments_ids' to make sure it has only the top level comment
+		$comments_ids = array_values( wp_list_pluck( $exporter_instance->get_top_level_comments(), 'comment_ID' ) );
+		$this->assertEquals( $comments_ids, array( $first_level_comment_id ) );
+	}
+
+	private function __get_exporter_instance( $post_id = false ) {
+		$post_id = ( $post_id ) ? $post_id : $this->_post_id;
+		return new SpotIM_Export_Conversation( $post_id );
+	}
+
 	/*
 	 * This function nests up to 2 levels deep
 	 */
