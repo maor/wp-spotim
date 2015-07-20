@@ -13,7 +13,28 @@ Author URI: http://maorchasen.com/
 */
 
 require_once 'inc/class-spotim-export-conversation.php';
+require_once 'inc/class-spotim-admin.php';
+require_once 'inc/class-spotim-util.php';
 
+class WP_SpotIM {
+	private static $_instance = null;
+
+	protected function __construct() {
+		$this->admin = new SpotIM_Admin;
+	}
+
+	/**
+	 * @return WP_SpotIM
+	 */
+	public static function instance() {
+		$class = __CLASS__;
+
+		if ( is_null( self::$_instance ) )
+			self::$_instance = new $class;
+
+		return self::$_instance;
+	}
+}
 
 class SpotIM_Export {
 	private $comments = false;
@@ -43,11 +64,22 @@ class SpotIM_Export {
 	}
 }
 
+add_action( 'plugins_loaded', array( 'WP_SpotIM', 'instance' ) );
+
 function spot_generate_json() {
 	$result = array();
 
 	$instance = new SpotIM_Export();
 	$result = $instance->start();
+
+	$filename = apply_filters( 'spotim_json_download_filename', sprintf( 'spotim-export-%s.json', date_i18n( 'd-m-Y_h-i', time() ) ) );
+
+	// do headers
+	SpotIM_Util::send_headers( array(
+		'Content-Disposition' 	=> "attachment; filename=$filename",
+		'Pragma' 				=> 'no-cache',
+		'Expires' 				=> '0',
+	) );
 
 	wp_send_json( $result );
 	wp_die();
