@@ -53,7 +53,8 @@ class SpotIM_Export {
 		}
 
 		foreach ( (array) $post_ids as $post_id ) {
-			$post_result = ( new SpotIM_Export_Conversation( $post_id ) )->export();
+			$exporter_instance = new SpotIM_Export_Conversation( $post_id );
+			$post_result = $exporter_instance->export();
 
 			// if post was successfully processed, and guaranteed to have comments
 			if ( $post_result )
