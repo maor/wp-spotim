@@ -6,11 +6,13 @@ class ExportTest extends WP_SpotIM_TestCase {
 
 	protected $_top_level_comments;
 
+	protected $_post_id;
+
 
 	public function setUp() {
 		parent::setUp();
 
-		$post_id = $this->factory->post->create();
+		$this->_post_id = $post_id = $this->factory->post->create();
 
 		// let's associate comments to this new post
 		$this->_top_level_comments = $this->__util_create_nested_comments_randomly( $post_id );
@@ -29,6 +31,28 @@ class ExportTest extends WP_SpotIM_TestCase {
 		// check if both arrays are equal (top level comment IDs 
 		// are in place and properly exported)
 		$this->assertEquals( $this->_top_level_comments, $this->_exported_data->comments_ids );
+	}
+
+	public function test_anonymous_user_comment() {
+		// create an anonymous comment
+		$comment_id = $this->factory->comment->create( array(
+			'comment_post_ID' => $this->_post_id,
+			'comment_author' => 'Anonymous',
+		) );
+
+		// create an export instance
+		$export_instance = new SpotIM_Export_Conversation( $this->_post_id );
+
+		// get all comments
+		$messages = $export_instance->aggregate_messages();
+
+		// is this message here at all?
+		$this->assertArrayHasKey( $comment_id, $messages );
+
+		$exported_comment = $messages[ $comment_id ];
+
+		// is this user anonymous?
+		$this->assertTrue( $exported_comment['anonymous'] );
 	}
 
 	/*
