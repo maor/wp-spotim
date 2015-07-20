@@ -8,6 +8,15 @@ class ExportTest extends WP_SpotIM_TestCase {
 
 	protected $_post_id;
 
+	protected $_random_authors = array(
+		'ishaythestud@example.com' => 'Ishay Gee',
+		'maorlv@example.com' => 'Maor Cee',
+		'princeharry@example.com' => 'Prince Harry',
+		'doge@example.com' => 'Doge, Inc.',
+		'brokenexample.com' => 'Broken Email',
+		'alenby@example.com' => '', // empty name
+	);
+
 
 	public function setUp() {
 		parent::setUp();
@@ -59,14 +68,7 @@ class ExportTest extends WP_SpotIM_TestCase {
 	 * This function nests up to 2 levels deep
 	 */
 	private function __util_create_nested_comments_randomly( $post_id ) {
-		$_random_authors = array(
-			'ishaythestud@example.com' => 'Ishay Gee',
-			'maorlv@example.com' => 'Maor Cee',
-			'princeharry@example.com' => 'Prince Harry',
-			'doge@example.com' => 'Doge, Inc.',
-			'brokenexample.com' => 'Broken Email',
-			'alenby@example.com' => '', // empty name
-		);
+		$_random_authors = $this->_random_authors;
 
 		// create some top-level comments first
 		$comments_ids = $this->factory->comment->create_post_comments( $post_id, 5 );
