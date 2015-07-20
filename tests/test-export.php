@@ -48,12 +48,9 @@ class ExportTest extends WP_SpotIM_TestCase {
 			'comment_post_ID' => $this->_post_id,
 			'comment_author' => 'Anonymous',
 		) );
-
-		// create an export instance
-		$export_instance = new SpotIM_Export_Conversation( $this->_post_id );
-
+		
 		// get all comments
-		$messages = $export_instance->aggregate_messages();
+		$messages = ( new SpotIM_Export_Conversation( $this->_post_id ) )->aggregate_messages();
 
 		// is this message here at all?
 		$this->assertArrayHasKey( $comment_id, $messages );
