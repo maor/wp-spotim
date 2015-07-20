@@ -47,8 +47,7 @@ class ExportTest extends WP_SpotIM_TestCase {
 		) );
 
 		// get all comments
-		$exporter_instance = new SpotIM_Export_Conversation( $this->_post_id );
-		$messages = $exporter_instance->aggregate_messages();
+		$messages = $this->__get_exporter_instance( $this->_post_id )->aggregate_messages();
 
 		// is this message here at all?
 		$this->assertArrayHasKey( $comment_id, $messages );
@@ -70,8 +69,7 @@ class ExportTest extends WP_SpotIM_TestCase {
 		) );
 
 		// create an export instance
-		$exporter_instance = new SpotIM_Export_Conversation( $this->_post_id );
-		$users = $exporter_instance->aggregate_users();
+		$users = $this->__get_exporter_instance( $this->_post_id )->aggregate_users();
 
 		// how many items have this email in them?
 		$all_emails = wp_list_pluck( $users, 'email' );
