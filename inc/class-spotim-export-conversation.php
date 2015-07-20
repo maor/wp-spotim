@@ -18,6 +18,9 @@ class SpotIM_Export_Conversation {
 			$this->comments[ $comment->comment_ID ] = $comment;
 		}
 
+		// solidify 'global' object to be used throught this class
+		$this->object = new stdClass;
+
 		return $this;
 	}
 
@@ -41,8 +44,6 @@ class SpotIM_Export_Conversation {
 		if ( empty($this->comments) )
 			return false;
 
-		// solidify object
-		$this->object = new stdClass;
 		$o = &$this->object; // pointer
 
 		// set URL of post
@@ -111,6 +112,11 @@ class SpotIM_Export_Conversation {
 	}
 
 	public function aggregate_messages() {
+		// if tree is not rendered yet, do it now.
+		if ( empty( $this->object->tree ) ) {
+			$this->object->tree = $this->get_tree();
+		}
+
 		$comments = array();
 		$comment_ids = array_keys( $this->object->tree );
 
