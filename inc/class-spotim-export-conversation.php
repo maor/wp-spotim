@@ -127,12 +127,13 @@ class SpotIM_Export_Conversation {
 			$comments[ $comment->comment_ID ] = array(
 				'content' => apply_filters( 'get_comment_text', $comment->comment_content, $comment, array() ),
 				'written_at' => strtotime( $comment->comment_date_gmt ),
-				'anonymous' => $comment_is_anonymous,
 			);
 
 			// if comment isn't anonymous, append user ID
 			if ( ! $comment_is_anonymous )
 				$comments[ $comment->comment_ID ]['user_id'] = $comment->comment_author_email;
+			else
+				$comments[ $comment->comment_ID ]['anonymous'] = true;
 		}
 		
 		return $comments;
