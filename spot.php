@@ -1,12 +1,12 @@
 <?php
 /**
  * @package Spot
- * @version 1.6
+ * @version 0.1
  */
 /*
-Plugin Name: SPOT
-Plugin URI: http://google.com
-Description: Spot. THat's it.
+Plugin Name: Spot.IM
+Plugin URI: http://spot.im
+Description: Description for wp-spotim should be here
 Author: Maor Chasen
 Version: 0.1
 Author URI: http://maorchasen.com/
