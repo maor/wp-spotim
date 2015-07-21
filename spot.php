@@ -80,9 +80,13 @@ function spot_generate_json() {
 		'Content-Disposition' 	=> "attachment; filename=$filename",
 		'Pragma' 				=> 'no-cache',
 		'Expires' 				=> '0',
+		'Content-Type'			=> 'application/json; charset=' . get_option( 'blog_charset' ),
 	) );
 
-	wp_send_json( $result );
+	require_once 'inc/class-spotim-jsonpretty.php';
+
+	$json_pretty = new SpotIM_JsonPretty;
+	echo $json_pretty->prettify( json_encode( $result ) );
 	wp_die();
 }
 add_action( 'wp_ajax_spot-generate-json', 'spot_generate_json' );
