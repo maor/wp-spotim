@@ -104,27 +104,24 @@ class ExportTest extends WP_SpotIM_TestCase {
 
 		/*
 		Tree structure should look like this:
-		array(3) {
-		  [132]=>
+		array(2) {
+		  [101]=>
 		  array(1) {
 		    [0]=>
-		    string(3) "133"
+		    string(3) "102"
 		  }
-		  [133]=>
+		  [102]=>
 		  array(1) {
 		    [0]=>
-		    string(3) "134"
-		  }
-		  [134]=>
-		  array(0) {
+		    string(3) "103"
 		  }
 		}
 		*/
 		$exporter_instance = $this->__get_exporter_instance( $post_id );
 		$tree = $exporter_instance->get_tree();
 
-		// there should be 3 items in the tree
-		$this->assertCount( 3, $tree );
+		// there should be 2 items in the tree (because the 3rd is empty)
+		$this->assertCount( 2, $tree );
 		
 		// check if 1st comment has the 2nd level comment in it
 		$this->assertTrue( array_key_exists( $first_level_comment_id, $tree ) && current( $tree[ $first_level_comment_id ] ) == $second_level_comment_id );
@@ -132,7 +129,8 @@ class ExportTest extends WP_SpotIM_TestCase {
 		$this->assertTrue( array_key_exists( $second_level_comment_id, $tree ) && current( $tree[ $second_level_comment_id ] ) == $third_level_comment_id );
 		// as for the third, it should exist in tree, but be orphan
 		$this->assertArrayHasKey( $second_level_comment_id, $tree );
-		$this->assertEmpty( $tree[ $third_level_comment_id ] );
+		// make sure third level does not exist (because it should be empty, since it has no children under it)
+		$this->assertTrue( ! array_key_exists( $third_level_comment_id, $tree ) );
 
 		// last but not least, check 'comments_ids' to make sure it has only the top level comment
 		$comments_ids = array_values( wp_list_pluck( $exporter_instance->get_top_level_comments(), 'comment_ID' ) );
