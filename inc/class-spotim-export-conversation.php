@@ -118,10 +118,8 @@ class SpotIM_Export_Conversation {
 		}
 
 		$comments = array();
-		$comment_ids = array_keys( $this->object->tree );
 
-		foreach ( $comment_ids as $comment_id ) {
-			$comment = $this->comments[ $comment_id ];
+		foreach ( $this->comments as $comment_id => $comment ) {
 			$comment_is_anonymous = ( '' === trim($comment->comment_author_email) );
 
 			$comments[ $comment->comment_ID ] = array(
@@ -159,9 +157,7 @@ class SpotIM_Export_Conversation {
 		$child_comments = $this->filter_children($comment_id);
 
 		// if no comments under this one, we're ending it here
-		if ( empty($child_comments) ) {
-			$bank[$comment_id] = array();
-		} else {
+		if ( ! empty($child_comments) ) {
 			$bank[$comment_id] = wp_list_pluck( $child_comments, 'comment_ID' );
 
 			// recurse down the tree
