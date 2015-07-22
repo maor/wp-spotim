@@ -174,3 +174,9 @@ Where can I see a Spot working live to get a better idea of it?
 	We know managing a website can get complicated. That’s why we made Spot.IM easy to use, even with its innovation. If you still need help with anything, try our very own Spot.Im Community site. From there, you can examine our Knoweldge Base, our Blog, and more.
 
 	You are also always more than welcome to contact our team at support@spot.im. We’ll be glad to help.
+
+
+== Changelog ==
+
+= 1.0.2 =
+* Launch

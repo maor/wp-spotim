@@ -8,7 +8,7 @@ Plugin Name: Spot.IM
 Plugin URI: http://spot.im
 Description: Description for wp-spotim should be here
 Author: Maor Chasen
-Version: 0.1
+Version: 1.0.2
 Author URI: http://maorchasen.com/
 */
 

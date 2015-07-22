@@ -114,7 +114,7 @@ module.exports = function(grunt) {
 
 		replace: {
 			plugin_main: {
-				src: [ 'spot.php' ],
+				src: [ 'spotim-comments.php' ],
 				overwrite: true,
 				replacements: [
 					{
@@ -204,8 +204,9 @@ module.exports = function(grunt) {
 		wp_deploy: {
 			deploy:{
 				options: {
-					plugin_slug: '<%= pkg.slug %>',
-					svn_user: 'KingYes',
+					// plugin_slug: '<%= pkg.slug %>',
+					plugin_slug: 'spotim-comments',
+					svn_user: 'maor',
 					build_dir: 'build/'
 				}
 			}
