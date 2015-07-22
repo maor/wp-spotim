@@ -1,17 +1,15 @@
-# Spot.IM Comments #
-[![Build Status](https://travis-ci.org/maor/wp-spotim.svg?branch=master)](https://travis-ci.org/maor/wp-spotim) [![Dependency Status](https://david-dm.org/maor/wp-spotim/dev-status.svg)](https://david-dm.org/maor/wp-spotim#info=devDependencies) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
-
-**Contributors:** maor, BenSh  
-**Tags:** comments, spotim, ajax  
-**Requires at least:** 3.8  
-**Tested up to:** 4.2  
-**Stable tag:** 1.0.2  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+=== Spot.IM Comments ===
+Contributors: maor, BenSh
+Tags: comments, spotim, ajax
+Requires at least: 3.8
+Tested up to: 4.2
+Stable tag: 1.0.2
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Real-time comments widget turns your site into its own content-circulating ecosystem. Implement an innovative conversation UI and dynamic newsfeed to spur user engagement, growth, and retention.
 
-## Description ##
+== Description ==
 
 Spot.IM Comments is an advanced, real-time commenting platform that gives website publishers direct ownership of their users’ conversation and social output. In only 5 minutes, your website can be host to a live, vivid community that lives not on Facebook or Twitter, but on your very own pages. 
 
@@ -38,7 +36,7 @@ In today’s world, mobile functionality is everything. That’s why Spot.IM is 
 Comment, comment form, commenting, comments, comment author, comment form, comment system, comment template, comments box, community, discuss, discussion, discussions, commenter, live update, real time, realtime, real-time, Spot.IM, reply, social login, widget, social, moderation, community, communities, engagement, Facebook, profile, sharing, newsfeed, chat, chat interface, notification, notifications, SEO, retention, pageviews, email alerts, direct message, direct messaging, group message, group messaging, content, content circulation, UGC, user generated content
  
 
-## Installation ##
+== Installation ==
 
 1.	Install the Spot.IM Plugin either via the search option inside the WordPress plugins page (located in the toolbar of your admin page), or by uploading the files to your server (in the /wp-content/plugins/ directory). 
 
@@ -51,9 +49,9 @@ Comment, comment form, commenting, comments, comment author, comment form, comme
 5.	Then go to the Spot.IM Plugin settings page (Spot.IM > Settings) and fill the Spot’s ID that You have recieved from step 4.
 
 
-## Screenshots ##
+== Screenshots ==
 
-## Features ##
+== Features ==
 
 •	Live Commenting – Typing users and submitted comments are seen in real time. No waiting, no delay, no frustrating load times.
 •	Chat Interface – A chat UI is integrated into the commenting experience to stimulate vibrant conversations. See if a user is online and engage in free-flowing dialogue.
@@ -79,7 +77,7 @@ Comment, comment form, commenting, comments, comment author, comment form, comme
 
 	For more information, please visit our website – Spot.IM 
 
-## Frequently Asked Questions ##
+== Frequently Asked Questions ==
 
 Export data was finished but the donwload of exported file didn't start?
     
@@ -108,7 +106,7 @@ Export data stop at X(any number)%?
 	
 Which browsers will support my Spot?
 	
-**	All popular browsers support Spot! (Note:** Need to consult developers on this)  
+	All popular browsers support Spot! (Note: Need to consult developers on this)
 
 How do I moderate content on my Spot?
 
@@ -141,9 +139,9 @@ How do I get mobile working for my Spot?
 
 How do I change the language of my Spot’s interface?
 
-**	Currently the Spot’s interface is partially translated into 16 languages:** English, German, Spanish, French, Hebrew, Hungarian, Italian, Japanese, Korean, Dutch, Portuguese, Romanian, Russian, Turkish, Ukrainian and Chinese. Soon to be fully translated.  
+	Currently the Spot’s interface is partially translated into 16 languages: English, German, Spanish, French, Hebrew, Hungarian, Italian, Japanese, Korean, Dutch, Portuguese, Romanian, Russian, Turkish, Ukrainian and Chinese. Soon to be fully translated.
 
-**	The language of the user’s browser determines the language of the interface:** If a user is using a browser in French, they will see the translated interface in French, etc.  
+	The language of the user’s browser determines the language of the interface: If a user is using a browser in French, they will see the translated interface in French, etc.
 
 	Is spam filtered?
 	Yes. To go along with other moderation tools, Spot.IM offers extensive word filter, blacklist, and spam control tools. 
@@ -168,7 +166,7 @@ Where can I see a Spot working live to get a better idea of it?
 
 	Are there any tips or tricks I can use to help make my Spot – and my community – more vibrant?
 
-**	Why, how funny you should ask:** there are! We strongly recommend you take a look at our Best Practices page to get a better idea o how to best utilize your Spot. A Spot is a versatile asset for your website, and you’ll want to manage it however best fits your specific needs.   
+	Why, how funny you should ask: there are! We strongly recommend you take a look at our Best Practices page to get a better idea o how to best utilize your Spot. A Spot is a versatile asset for your website, and you’ll want to manage it however best fits your specific needs. 
 
 
 	My question wasn’t answered here. Where can I get further support?

@@ -217,7 +217,6 @@ module.exports = function(grunt) {
 			},
 			options: {
 				bin: 'phpunit',
-				bootstrap: 'tests/bootstrap.php',
 				colors: true
 			}
 		}

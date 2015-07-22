@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-spotim 1.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-22 14:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: inc/class-spotim-admin.php:16 inc/class-spotim-admin.php:17
+#: inc/class-spotim-admin.php:108
+msgid "Spot.IM Settings"
+msgstr ""
+
+#: inc/class-spotim-admin.php:43
+msgid "Commenting Options"
+msgstr ""
+
+#: inc/class-spotim-admin.php:50
+msgid "Enable Spot.IM comments replacement?"
+msgstr ""
+
+#: inc/class-spotim-admin.php:62
+msgid "Your Spot ID"
+msgstr ""
+
+#: inc/class-spotim-admin.php:118
+msgid "Export"
+msgstr ""
+
+#: inc/class-spotim-admin.php:119
+msgid "Welcome to Spot.IM Comments JSON exporter."
+msgstr ""
+
+#: inc/class-spotim-admin.php:123
+msgid "Export JSON"
+msgstr ""
+
+#: inc/class-spotim-admin.php:138
+msgid "These are some basic settings for SpotIM."
+msgstr ""
+
+#: inc/class-spotim-admin.php:230
+msgid "Yes"
+msgstr ""
+
+#: inc/class-spotim-admin.php:231
+msgid "No"
+msgstr ""
