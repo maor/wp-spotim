@@ -16,6 +16,7 @@ require_once 'inc/class-spotim-export.php';
 require_once 'inc/class-spotim-export-conversation.php';
 require_once 'inc/class-spotim-admin.php';
 require_once 'inc/class-spotim-util.php';
+require_once 'inc/class-spotim-frontend.php';
 
 class WP_SpotIM {
 	private static $_instance = null;
@@ -23,7 +24,13 @@ class WP_SpotIM {
 	protected function __construct() {
 		$this->admin = new SpotIM_Admin;
 
+		// setup AJAX
 		$this->register_ajax_handlers();
+
+		// setup front-end
+		if ( ! is_admin() ) {
+			SpotIM_Frontend::setup();
+		}
 	}
 
 	/**
