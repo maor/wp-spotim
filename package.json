@@ -1,9 +1,9 @@
 {
-	"name": "aryo-activity-log",
-	"slug": "aryo-activity-log",
-	"homepage": "http://pojo.me/",
-	"description": "Activity Log",
-	"version": "2.2.3",
+	"name": "wp-spotim",
+	"slug": "wp-spotim",
+	"homepage": "http://spot.im/",
+	"description": "WP-SpotIM",
+	"version": "0.1",
 	"devDependencies": {
 		"grunt": "~0.4.1",
 		"grunt-checktextdomain": "~1.0.0",
