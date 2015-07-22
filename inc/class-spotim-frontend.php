@@ -17,11 +17,12 @@ class SpotIM_Frontend {
 	}
 
 	public static function action_wp_head() {
+		$spot_id = WP_SpotIM::instance()->admin->get_option( 'spot_id', 'sp_foo' );
 		?>
 		<!-- wp-spotim vars -->
 		<script type="text/javascript">
 			var WP_SpotIM = {
-				spot_id: 'sp_bla'
+				spot_id: '<?php echo esc_js( $spot_id ); ?>'
 			};
 
 			// spot.im embed

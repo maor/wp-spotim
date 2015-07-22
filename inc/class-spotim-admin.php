@@ -31,6 +31,7 @@ class SpotIM_Admin {
 		if ( ! get_option( $this->slug ) ) {
 			update_option( $this->slug, apply_filters( 'spotim_default_options', array(
 				'enable_comments_replacement' => true,
+				'spot_id' => 'sp_foo',
 			) ) );
 		}
 
@@ -56,12 +57,22 @@ class SpotIM_Admin {
 			)
 		);
 
-
+		add_settings_field(
+			'spot_id',
+			__( 'Your Spot ID', 'wp-spotim' ),
+			array( 'SpotIM_Settings_Fields', 'text_field' ),
+			$this->slug,
+			'general_settings_section',
+			array(
+				'id'      => 'spot_id',
+				'page'    => $this->slug,
+			)
+		);
 	}
 
-	public function get_option( $key = '' ) {
+	public function get_option( $key = '', $default_value = false ) {
 		$settings = $this->get_options();
-		return ! empty( $settings[ $key ] ) ? $settings[ $key ] : false;
+		return ! empty( $settings[ $key ] ) ? $settings[ $key ] : $default_value;
 	}
 
 	/**
