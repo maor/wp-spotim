@@ -8,7 +8,9 @@ class SpotIM_Frontend {
 	}
 
 	public static function filter_comments_template( $theme_template ) {
-		if ( is_single() && comments_open() )
+		$allow_comments = WP_SpotIM::instance()->admin->get_option( 'enable_comments_replacement' ) == '1';
+
+		if ( $allow_comments && is_single() && comments_open() )
 			$theme_template = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/comments-template.php';
 
 		return $theme_template;
