@@ -119,7 +119,7 @@ class SpotIM_Admin {
 
 			<form id="activity-filter" method="get" action="<?php echo admin_url( 'admin-ajax.php' ); ?>">
 				<input type="hidden" name="action" value="spot-generate-json" />
-				<button type="submit" class="button button-primary"><?php _e( 'Export JSON', 'wp-spotim' ); ?></button>
+				<button type="submit" class="button"><?php _e( 'Export JSON', 'wp-spotim' ); ?></button>
 			</form>
 		</div>
 		<?php
