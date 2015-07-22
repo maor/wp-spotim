@@ -39,14 +39,14 @@ class SpotIM_Admin {
 
 		add_settings_section(
 			'general_settings_section',			// ID used to identify this section and with which to register options
-			__( 'Display Options', 'wp-spotim' ),	// Title to be displayed on the administration page
+			__( 'Commenting Options', 'wp-spotim' ),	// Title to be displayed on the administration page
 			array( 'SpotIM_Settings_Fields', 'general_settings_section_header' ),	// Callback used to render the description of the section
 			$this->slug		// Page on which to add this section of options
 		);
 
 		add_settings_field(
 			'enable_comments_replacement',
-			__( 'Enable Spot.IM comments replacement?', 'aryo-aal' ),
+			__( 'Enable Spot.IM comments replacement?', 'wp-spotim' ),
 			array( 'SpotIM_Settings_Fields', 'yesno_field' ),
 			$this->slug,
 			'general_settings_section',
@@ -71,7 +71,7 @@ class SpotIM_Admin {
 	 * @return array
 	 */
 	public function get_options() {
-		// Allow other plugins to get AAL's options.
+		// Allow other plugins to get spotim's options.
 		if ( isset( $this->options ) && is_array( $this->options ) && ! empty( $this->options ) )
 			return $this->options;
 		
@@ -93,7 +93,7 @@ class SpotIM_Admin {
 		?>
 		<div class="wrap">
 			<div id="icon-themes" class="icon32"></div>
-			<h2 class="aal-page-title"><?php _e( 'Spot.IM Settings', 'wp-spotim' ); ?></h2>
+			<h2 class="spotim-page-title"><?php _e( 'Spot.IM Settings', 'wp-spotim' ); ?></h2>
 
 			<form method="post" action="options.php">
 				<?php
