@@ -24,6 +24,15 @@ class SpotIM_Export_Conversation {
 		return $this;
 	}
 
+	/**
+	 * Check if conversation is empty
+	 *
+	 * @return bool
+	 */
+	public function is_empty() {
+		return empty( $this->comments );
+	}
+
 	public function filter_children( $parent_id ) {
 		$collection = array();
 

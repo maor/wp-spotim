@@ -1,12 +1,9 @@
 <?php
 
 class SpotIM_Export {
-	private $comments = false;
-	private $comments_processed = array();
-
 	public function __construct() {}
 
-	public function start( $post_ids = false ) {
+	public static function start( $post_ids = false ) {
 		$conversations_bucket = array();
 
 		if ( ! $post_ids ) {
@@ -21,7 +18,7 @@ class SpotIM_Export {
 			$post_result = $exporter_instance->export();
 
 			// if post was successfully processed, and guaranteed to have comments
-			if ( $post_result )
+			if ( $post_result && ! $exporter_instance->is_empty() )
 				$conversations_bucket[ $post_id ] = $post_result;
 		}
 
@@ -30,9 +27,7 @@ class SpotIM_Export {
 
 	public static function generate_json() {
 		$result = array();
-
-		$instance = new SpotIM_Export();
-		$result = $instance->start();
+		$result = self::start();
 
 		$filename = apply_filters( 'spotim_json_download_filename', sprintf( 'spotim-export-%s.json', date_i18n( 'd-m-Y_h-i', time() ) ) );
 

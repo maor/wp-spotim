@@ -141,6 +141,14 @@ class ExportTest extends WP_SpotIM_TestCase {
 		$this->assertInstanceOf( 'stdClass', $this->__get_exporter_instance( $this->_post_id )->get_tree() );
 	}
 
+	public function test_empty_conversation_shouldnt_be_included() {
+		// create an empty post
+		$post_id = $this->factory->post->create();
+
+		// now there are two posts in total. there should be only 1 conversation in export.
+		$this->assertCount( 1, SpotIM_Export::start() );
+	}
+
 	private function __get_exporter_instance( $post_id = false ) {
 		$post_id = ( $post_id ) ? $post_id : $this->_post_id;
 		return new SpotIM_Export_Conversation( $post_id );
