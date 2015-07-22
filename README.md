@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/maor/wp-spotim.svg?branch=master)](https://travis-ci.org/maor/wp-spotim) [![Dependency Status](https://david-dm.org/maor/wp-spotim/dev-status.svg)](https://david-dm.org/maor/wp-spotim#info=devDependencies) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 **Contributors:** maor, BenSh  
-**Tags:** comments, spotim, ajax  
+**Tags:** Comment, comment form, commenting, comments, comment author, comment form, comment system, comment template, comments box, community, discuss, discussion, discussions, commenter, live update, real time, realtime, real-time, Spot.IM, reply, social login, widget, social, moderation, community, communities, engagement, Facebook, profile, sharing, newsfeed, chat, chat interface, notification, notifications, SEO, retention, pageviews, email alerts, direct message, direct messaging, group message, group messaging, content, content circulation, UGC, user generated content  
 **Requires at least:** 3.8  
 **Tested up to:** 4.2  
 **Stable tag:** 1.0.2  
@@ -33,9 +33,6 @@ We’ve taken some core social functionalities and integrated them into Spot.IM�
 
 **Mobile Integration**
 In today’s world, mobile functionality is everything. That’s why Spot.IM is immediately optimized for all mobile platforms, ensuring that your users get just as much out of your site when they’re on the go as when they’re at home.
-
-**Tags**
-Comment, comment form, commenting, comments, comment author, comment form, comment system, comment template, comments box, community, discuss, discussion, discussions, commenter, live update, real time, realtime, real-time, Spot.IM, reply, social login, widget, social, moderation, community, communities, engagement, Facebook, profile, sharing, newsfeed, chat, chat interface, notification, notifications, SEO, retention, pageviews, email alerts, direct message, direct messaging, group message, group messaging, content, content circulation, UGC, user generated content
  
 
 ## Installation ##
