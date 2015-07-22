@@ -118,7 +118,7 @@ class ExportTest extends WP_SpotIM_TestCase {
 		}
 		*/
 		$exporter_instance = $this->__get_exporter_instance( $post_id );
-		$tree = $exporter_instance->get_tree();
+		$tree = (array) $exporter_instance->get_tree();
 
 		// there should be 2 items in the tree (because the 3rd is empty)
 		$this->assertCount( 2, $tree );
@@ -135,6 +135,10 @@ class ExportTest extends WP_SpotIM_TestCase {
 		// last but not least, check 'comments_ids' to make sure it has only the top level comment
 		$comments_ids = array_values( wp_list_pluck( $exporter_instance->get_top_level_comments(), 'comment_ID' ) );
 		$this->assertEquals( $comments_ids, array( $first_level_comment_id ) );
+	}
+
+	public function test_tree_should_be_hash() {
+		$this->assertInstanceOf( 'stdClass', $this->__get_exporter_instance( $this->_post_id )->get_tree() );
 	}
 
 	private function __get_exporter_instance( $post_id = false ) {

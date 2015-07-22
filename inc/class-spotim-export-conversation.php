@@ -145,8 +145,8 @@ class SpotIM_Export_Conversation {
 		foreach ($parent_comments as $comment) {
 			$this->traverse($comment->comment_ID, $bank);
 		}
-
-		return $bank;
+		
+		return (object) $bank;
 	}
 
 	public function get_top_level_comments() {
