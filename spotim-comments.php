@@ -19,7 +19,7 @@ require_once 'inc/class-spotim-util.php';
 require_once 'inc/class-spotim-frontend.php';
 
 class WP_SpotIM {
-	private static $_instance = null;
+	private static $_instance;
 
 	protected function __construct() {
 		$this->admin = new SpotIM_Admin;
@@ -37,10 +37,8 @@ class WP_SpotIM {
 	 * @return WP_SpotIM
 	 */
 	public static function instance() {
-		$class = __CLASS__;
-
 		if ( is_null( self::$_instance ) )
-			self::$_instance = new $class;
+			self::$_instance = new self;
 
 		return self::$_instance;
 	}
