@@ -17,12 +17,17 @@ require_once 'inc/class-spotim-export-conversation.php';
 require_once 'inc/class-spotim-admin.php';
 require_once 'inc/class-spotim-util.php';
 require_once 'inc/class-spotim-frontend.php';
+require_once 'inc/abstract-class-spotim-api-base.php';
+require_once 'inc/class-spotim-api-dispatcher.php';
 
 class WP_SpotIM {
 	private static $_instance;
 
+	const AUTH_OPTION = 'spotim_auth';
+
 	protected function __construct() {
 		$this->admin = new SpotIM_Admin;
+		$this->api = new SpotIM_API_Dispatcher;
 
 		// setup AJAX
 		$this->register_ajax_handlers();
@@ -46,6 +51,16 @@ class WP_SpotIM {
 	public function register_ajax_handlers() {
 		add_action( 'wp_ajax_spot-generate-json', array( 'SpotIM_Export', 'generate_json' ) );
 	}
+
+	public static function activation_hook() {
+		// create a spot via API
+		self::instance()->api->initiate_setup();
+	}
 }
 
-add_action( 'plugins_loaded', array( 'WP_SpotIM', 'instance' ) );
+function spotim_instance() {
+	return WP_SpotIM::instance();
+}
+add_action( 'plugins_loaded', 'spotim_instance' );
+
+register_activation_hook( __FILE__, array( 'WP_SpotIM', 'activation_hook' ) );
