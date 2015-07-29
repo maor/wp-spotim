@@ -66,7 +66,7 @@ class SpotIM_Admin {
 			array(
 				'id'      => 'spot_id',
 				'page'    => $this->slug,
-				'desc'	  => 'Find your Spot\'s ID at the <a href="https://www.spot.im/spots" target="_blank">Spot management dashboard</a>.<br> Don\'t have an account? <a href="http://www.spot.im/spots" target="_blank">Create one</a> for free!'
+				'desc'	  => 'Find your Spot\'s ID at the <a href="https://www.spot.im/login" target="_blank">Spot management dashboard</a>.<br> Don\'t have an account? <a href="http://www.spot.im/" target="_blank">Create one</a> for free!'
 			)
 		);
 	}
