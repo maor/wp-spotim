@@ -13,6 +13,8 @@ abstract class SpotIM_API_Base {
 		'Content-Type' 			=> 'application/json',
 	);
 
+	private static $ok_codes = array( 200, 304 );
+
 	public function __construct() {}
 
 	public function request( $endpoint, $payload ) {
@@ -24,6 +26,13 @@ abstract class SpotIM_API_Base {
 		) );
 
 		return wp_remote_retrieve_body( $res );
+	}
+
+	public static function is_response_ok( &$request ) {
+		return (
+			! is_wp_error( $request )
+			&& in_array( wp_remote_retrieve_response_code( $request ), self::$ok_codes )
+		);
 	}
 
 	public static function get_full_request_url( $endpoint ) {
