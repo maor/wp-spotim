@@ -3,7 +3,7 @@
 class SpotIM_API_Dispatcher {
 	private $request_object;
 
-	public function initiate_setup( $request_object = false ) {
+	public function initiate_setup() {
 		$current_user = wp_get_current_user();
 
 		// grab all the data needed to setup
@@ -17,20 +17,39 @@ class SpotIM_API_Dispatcher {
 		);
 
 		// get request object
-		$response = $this->_get_request_object()->request( 'spot', $request_data );
+		$response = (array) $this->_get_request_object()->request( 'spot', $request_data, false )->execute()->response();
 
 		// if spot_id/token exist in response, update option.
 		if ( array_key_exists( 'spot_id', $response ) && array_key_exists( 'spot_token', $response ) ) {
 			// save the spot_id and spot_token
-			$spotim_instance = spotim_instance();
-			return update_option( $spotim_instance::AUTH_OPTION, (array) $response );
+			update_option( SPOTIM_AUTH_OPTION, $response );
+			return true;
 		}
 
 		return false;
 	}
 
 	public function register_conversation( $post_id = false ) {
+		// check if post exists first
+		if ( ! is_string( get_post_status( $post_id ) ) )
+			return false;
 
+		$request_data = array(
+			'post_id' => $post_id,
+			'site_url' => get_permalink( $post_id ),
+		);
+
+		$response = $this->_get_request_object()->request( 'register_conversation', $request_data )->execute();
+
+		// check if HTTP 200 OK
+		if ( $response->is_response_ok() ) {
+			// save flag so we don't process this post twice
+			update_post_meta( $post_id, '_spotim_conversation_registered', 1 );
+			return true;
+		}
+
+		// request failed
+		return false;
 	}
 
 	private function _get_request_object() {

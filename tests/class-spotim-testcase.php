@@ -28,6 +28,20 @@ class WP_SpotIM_TestCase extends WP_UnitTestCase {
 	function setUp() {
 		parent::setUp();
 		// $this->plugin = $GLOBALS['spot'];
+
+		// accquire auth token + spot id
+		add_filter( 'spotim_api_request_object_class', array( $this, '_filter_spotim_api_request_object_class' ) );
+
+		spotim_instance()->api->initiate_setup();
+	}
+
+	public function test_recieve_setup_spot_id_token() {
+		// run initial plugin setup hook
+		$this->assertTrue( spotim_instance()->api->initiate_setup() );
+	}
+
+	public function _filter_spotim_api_request_object_class() {
+		return 'SpotIM_API_Mock';
 	}
 
 	/**
