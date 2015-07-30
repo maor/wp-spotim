@@ -17,7 +17,7 @@ class SpotIM_API_Base {
 
 	public function __construct() {}
 
-	public function request( $endpoint, $payload ) {
+	public function request( $endpoint, $payload, $json_decode = true ) {
 		$request_url = self::get_full_request_url( $endpoint );
 
 		$res = wp_remote_post( $request_url, array(
@@ -25,7 +25,12 @@ class SpotIM_API_Base {
 			'body' => @json_encode( $payload )
 		) );
 
-		return wp_remote_retrieve_body( $res );
+		$response_body = wp_remote_retrieve_body( $res );
+
+		if ( $json_decode )
+			$response_body = json_decode( $response_body );
+
+		return $response_body;
 	}
 
 	public static function is_response_ok( &$request ) {
