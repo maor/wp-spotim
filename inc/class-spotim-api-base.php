@@ -51,7 +51,6 @@ class SpotIM_API_Base {
 		if ( is_null( $this->auth_data ) ) {
 			$this->auth_data = get_option( SPOTIM_AUTH_OPTION );
 		}
-		var_dump(3,SPOTIM_AUTH_OPTION, get_option('spotim_auth'), $this->auth_data); die;
 
 		return array_key_exists( $key, $this->auth_data ) ? $this->auth_data[ $key ] : false;
 	}
