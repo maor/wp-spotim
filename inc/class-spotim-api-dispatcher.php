@@ -1,6 +1,8 @@
 <?php
 
 class SpotIM_API_Dispatcher {
+	private $request_object;
+
 	public function initiate_setup( $request_object = false ) {
 		$current_user = wp_get_current_user();
 
@@ -15,11 +17,7 @@ class SpotIM_API_Dispatcher {
 		);
 
 		// get request object
-		($request_object ?: $request_object = new SpotIM_API_Base);
-
-		$res = $request_object->request( 'spot', $request_data );
-
-		$response = json_decode( $res );
+		$response = $this->_get_request_object()->request( 'spot', $request_data );
 
 		// if spot_id/token exist in response, update option.
 		if ( array_key_exists( 'spot_id', $response ) && array_key_exists( 'spot_token', $response ) ) {
@@ -29,5 +27,17 @@ class SpotIM_API_Dispatcher {
 		}
 
 		return false;
+	}
+
+	public function register_conversation( $post_id = false ) {
+
+	}
+
+	private function _get_request_object() {
+		if ( ! is_null( $this->request_object ) )
+			return $this->request_object;
+
+		$req_object_class = apply_filters( 'spotim_api_request_object_class', 'SpotIM_API_Base' );
+		return new $req_object_class;
 	}
 }
