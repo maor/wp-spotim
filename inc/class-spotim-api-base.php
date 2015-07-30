@@ -1,6 +1,6 @@
 <?php
 
-abstract class SpotIM_API_Base {
+class SpotIM_API_Base {
 	const API_BASE_URL = 'https://staging-import.spot.im/';
 
 	public static $mock_endpoints = array(
