@@ -4,15 +4,20 @@ class SpotIM_Export_Conversation {
 	public $post_id;
 	private $comments;
 	private $object;
+	public $total_comments_count;
 
-	public function __construct( $post_id ) {
+	public function __construct( $post_id, $count = '', $offset = 0 ) {
 		$this->post_id = $post_id;
 
 		// cache comments
 		$comments = get_comments( apply_filters( 'spotim_comment_query_args', array(
 			'post_id' => $post_id,
 			'type' => 'comment', // include only comments, no trackbacks/pingbacks
+			'number' => $count,
+			'offset' => $offset,
 		) ) );
+
+		$this->total_comments_count = wp_count_comments( $post_id );
 
 		foreach ( $comments as $comment ) {
 			$this->comments[ $comment->comment_ID ] = $comment;
@@ -31,6 +36,10 @@ class SpotIM_Export_Conversation {
 	 */
 	public function is_empty() {
 		return empty( $this->comments );
+	}
+
+	public function get_comment_count() {
+		return count( $this->comments );
 	}
 
 	public function filter_children( $parent_id ) {
@@ -57,6 +66,9 @@ class SpotIM_Export_Conversation {
 
 		// set URL of post
 		$o->site_url = get_permalink( $this->post_id );
+
+		// comments count
+		$o->encapsulated_comments_count = count( $this->comments );
 		
 		// then get all comment IDs
 		$o->comments_ids = array_values( wp_list_pluck( $this->get_top_level_comments(), 'comment_ID' ) );
