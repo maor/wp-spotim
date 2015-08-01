@@ -62,6 +62,7 @@ final class WP_SpotIM {
 	}
 
 	private function includes() {
+		require_once 'inc/spotim-core-functions.php';
 		require_once 'inc/class-spotim-export.php';
 		require_once 'inc/class-spotim-export-conversation.php';
 		require_once 'inc/class-spotim-admin.php';
