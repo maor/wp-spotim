@@ -15,15 +15,6 @@ Author URI: http://maorchasen.com/
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-require_once 'inc/class-spotim-export.php';
-require_once 'inc/class-spotim-export-conversation.php';
-require_once 'inc/class-spotim-admin.php';
-require_once 'inc/class-spotim-util.php';
-require_once 'inc/class-spotim-frontend.php';
-require_once 'inc/class-spotim-http-request.php';
-require_once 'inc/class-spotim-api-base.php';
-require_once 'inc/class-spotim-api-dispatcher.php';
-
 final class WP_SpotIM {
 	private static $_instance;
 
@@ -36,6 +27,7 @@ final class WP_SpotIM {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self;
 			self::$_instance->setup_constants();
+			self::$_instance->includes();
 			self::$_instance->dependencies();
 		}
 
@@ -67,6 +59,19 @@ final class WP_SpotIM {
 		if ( ! defined( 'SPOTIM_AUTH_OPTION' ) ) {
 			define( 'SPOTIM_AUTH_OPTION', 'spotim_auth' );
 		}
+	}
+
+	private function includes() {
+		require_once 'inc/class-spotim-export.php';
+		require_once 'inc/class-spotim-export-conversation.php';
+		require_once 'inc/class-spotim-admin.php';
+		require_once 'inc/class-spotim-util.php';
+		require_once 'inc/class-spotim-frontend.php';
+		require_once 'inc/class-spotim-http-request.php';
+		require_once 'inc/class-spotim-api-base.php';
+		require_once 'inc/class-spotim-api-dispatcher.php';
+
+		$this->spotim_api = include( 'inc/class-spotim-api.php' );
 	}
 
 	public function register_default_hooks() {
