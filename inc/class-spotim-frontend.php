@@ -36,10 +36,12 @@ class SpotIM_Frontend {
 
 	public static function register_conversation_on_pageload() {
 		// if we're not viewing a post, bail
-		if ( ! is_single() || SpotIM_Util::is_conversation_processed( get_the_ID() ) )
+		if ( ! is_single() )
 			return;
 
-		// by now this is a post that wasn't processed
-		spotim_instance()->api->register_conversation( get_the_ID() );
+		if ( comments_open( get_the_ID() ) && ! SpotIM_Util::is_conversation_processed( get_the_ID() ) ) {
+			// by now this is a post that wasn't processed
+			spotim_instance()->api->register_conversation( get_the_ID() );
+		}
 	}
 }
