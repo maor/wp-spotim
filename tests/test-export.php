@@ -1,6 +1,6 @@
 <?php
 
-class ExportTest extends WP_SpotIM_TestCase {
+class Test_Export extends WP_SpotIM_TestCase {
 
 	protected $_exported_data;
 	protected $_top_level_comments;

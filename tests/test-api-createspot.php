@@ -3,7 +3,7 @@
 include 'mock-objects/class-spotim-api-mock.php';
 include 'mock-objects/class-spotim-http-request-mock.php';
 
-class API_CreateSpot extends WP_SpotIM_TestCase {
+class Test_API_CreateSpot extends WP_SpotIM_TestCase {
 
 	private $spotim_instance;
 
