@@ -34,7 +34,7 @@ class SpotIM_API_General extends SpotIM_API_Resource {
 		);
 
 		# POST /general/sync/
-		$routes[ $this->base . '/sync' ] = array(
+		$routes[ $this->base . '/sync/(?P<id>\d+)' ] = array(
 			array( array( $this, 'sync' ), SpotIM_API_Server::CREATABLE | SpotIM_API_Server::ACCEPT_DATA ),
 		);
 
@@ -85,7 +85,9 @@ class SpotIM_API_General extends SpotIM_API_Resource {
 	 * @param array $data
 	 * @return array
 	 */
-	public function sync( $data ) {
+	public function sync( $id, $data ) {
+		$sync_instance = new SpotIM_Sync( $id, $data );
 		
+		return $sync_instance->sync();
 	}
 }
