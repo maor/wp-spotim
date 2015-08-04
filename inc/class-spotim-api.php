@@ -182,6 +182,9 @@ class SpotIM_API {
 			// Buffer, we won't want any output here
 			ob_start();
 
+			// No cache headers
+			nocache_headers();
+
 			// Get API trigger
 			$api = strtolower( esc_attr( $wp->query_vars['spotim-api'] ) );
 

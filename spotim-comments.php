@@ -65,6 +65,7 @@ final class WP_SpotIM {
 		require_once 'inc/spotim-core-functions.php';
 		require_once 'inc/class-spotim-export.php';
 		require_once 'inc/class-spotim-export-conversation.php';
+		require_once 'inc/class-spotim-sync.php';
 		require_once 'inc/class-spotim-admin.php';
 		require_once 'inc/class-spotim-util.php';
 		require_once 'inc/class-spotim-frontend.php';

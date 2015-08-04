@@ -33,6 +33,11 @@ class SpotIM_API_General extends SpotIM_API_Resource {
 			array( array( $this, 'get_conversation' ), SpotIM_API_Server::READABLE ),
 		);
 
+		# POST /general/sync/
+		$routes[ $this->base . '/sync' ] = array(
+			array( array( $this, 'sync' ), SpotIM_API_Server::CREATABLE | SpotIM_API_Server::ACCEPT_DATA ),
+		);
+
 		return $routes;
 	}
 
@@ -71,5 +76,16 @@ class SpotIM_API_General extends SpotIM_API_Resource {
 			),
 			'conversation' => $result,
 		);
+	}
+
+	/**
+	 * Sync.
+	 *
+	 * @since 2.2
+	 * @param array $data
+	 * @return array
+	 */
+	public function sync( $data ) {
+		
 	}
 }
