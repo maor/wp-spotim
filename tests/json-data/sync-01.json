@@ -1,0 +1,49 @@
+{
+  "from_etag": 0,
+  "to_etag": 10,
+  "events": {
+    "c+": [
+      "sp_123_456_c_1"
+    ],
+    "c-": [],
+    "c~": [],
+    "r+": [
+      "sp_123_456_c_2"
+    ],
+    "r-": [],
+    "r~": []
+  },
+  "post_id": "456",
+  "conversation_id": "sp_123_456",
+  "messages": {
+    "sp_123_456_c_1": {
+      "id": "sp_123_456_c_1",
+      "type": "comment",
+      "user_id": "u_1",
+      "content": "Hello World",
+      "timestamp": 1426449371.4240065
+    },
+    "sp_123_456_c_2": {
+      "id": "sp_123_456_c_2",
+      "parent_id": "sp_123_456_c_1",
+      "type": "reply",
+      "user_id": "u_2",
+      "content": "Hi there, this is a yet another comment.",
+      "timestamp": 1426449371.4240065
+    }
+  },
+  "users": {
+    "u_1": {
+      "id": "u_1",
+      "email": "user@spot.im",
+      "user_name": "kevin71",
+      "display_name": "Kevin Schaden"
+    },
+    "u_2": {
+      "id": "u_2",
+      "email": "user2@spot.im",
+      "user_name": "user22",
+      "display_name": "SpotIMUser Two"
+    }
+  }
+}

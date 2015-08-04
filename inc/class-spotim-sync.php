@@ -126,6 +126,9 @@ class SpotIM_Sync {
 		}
 
 		// update stats
+		if ( empty( $this->counters[ $action ] ) ) {
+			$this->counters[ $action ] = 0;
+		}
 		++$this->counters[ $action ];
 	}
 

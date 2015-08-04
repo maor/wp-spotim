@@ -44,6 +44,15 @@ class WP_SpotIM_TestCase extends WP_UnitTestCase {
 		return 'SpotIM_API_Mock';
 	}
 
+	public function _read_json_file( $filename ) {
+		$path = dirname( __FILE__ ) . "/json-data/$filename";
+
+		if ( ! file_exists( $path ) )
+			return false;
+
+		return json_decode( file_get_contents( $path ), true );
+	}
+
 	/**
 	 * Make sure the plugin is initialized with its global variable
 	 *

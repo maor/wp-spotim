@@ -1,0 +1,79 @@
+{
+  "from_etag": 0,
+  "to_etag": 5,
+  "events": {
+    "c+": [
+      "sp_123_456_c_1",
+      "sp_123_456_c_2",
+      "sp_123_456_c_3",
+      "sp_123_456_c_4"
+    ],
+    "c-": [],
+    "c~": [],
+    "r+": [
+      "sp_123_456_c_3_r_1"
+    ],
+    "r-": [],
+    "r~": []
+  },
+  "post_id": "456",
+  "conversation_id": "sp_123_456",
+  "messages": {
+    "sp_123_456_c_1": {
+      "id": "sp_123_456_c_1",
+      "type": "comment",
+      "user_id": "u_1",
+      "content": "Hello World",
+      "timestamp": 1426449371.4240065
+    },
+    "sp_123_456_c_2": {
+      "id": "sp_123_456_c_2",
+      "type": "comment",
+      "user_id": "u_1",
+      "content": "Hey hey world this is some cool cool comment yay",
+      "timestamp": 1426449371.4240065
+    },
+    "sp_123_456_c_3": {
+      "id": "sp_123_456_c_3",
+      "type": "comment",
+      "user_id": "u_1",
+      "content": "Who said so? Please let me know.",
+      "timestamp": 1426449371.4240065
+    },
+    "sp_123_456_c_4": {
+      "id": "sp_123_456_c_4",
+      "type": "comment",
+      "user_id": "u_3",
+      "content": "Ahahaha this is so hilarious.",
+      "timestamp": 1426449371.4240065
+    },
+    "sp_123_456_c_3_r_1": {
+      "id": "sp_123_456_c_3_r_1",
+      "parent_id": "sp_123_456_c_3",
+      "type": "reply",
+      "user_id": "u_2",
+      "content": "Ben or David. Ask in the office please.",
+      "timestamp": 1426449371.4240065
+    }
+  },
+  "users": {
+    "u_1": {
+      "id": "u_1",
+      "email": "user@spot.im",
+      "user_name": "kevin71",
+      "display_name": "Kevin Schaden"
+    },
+    "u_2": {
+      "id": "u_2",
+      "email": "user2@spot.im",
+      "user_name": "user22",
+      "display_name": "SpotIMUser Two"
+    },
+    "u_3": {
+      "id": "u_3",
+      "email": "miguell@spot.im",
+      "user_name": "miguelspotim",
+      "display_name": "Miguel The Italian"
+    }
+  }
+}
